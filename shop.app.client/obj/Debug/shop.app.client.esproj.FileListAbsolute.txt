@@ -1,0 +1,1 @@
+C:\development\Shop.App\shop.app.client\obj\Debug\shop.app.client.esproj.CoreCompileInputs.cache
