@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SHOP_API_BASE_URL } from './clients/shop-client';
+import { ProductClient, SHOP_API_BASE_URL } from './clients/shop-client';
 import { AvailableProductsComponent } from './component/available-products/available-products.component';
 import { HeaderComponent } from './component/header/header.component';
 
@@ -12,6 +12,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { CartComponent } from './component/cart/cart.component';
+import { DataManagementComponent } from './component/data-management/data-management.component';
 
 
 @NgModule({
@@ -19,15 +20,19 @@ import { CartComponent } from './component/cart/cart.component';
     AppComponent,
     AvailableProductsComponent,
     HeaderComponent,
-    CartComponent
+    CartComponent,
+    DataManagementComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     ButtonModule,
     MenubarModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [ {provide: SHOP_API_BASE_URL, useValue: "https://localhost:7058" }],
+  providers: [ 
+    {provide: SHOP_API_BASE_URL, useValue: "http://localhost:8080" },
+     ProductClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

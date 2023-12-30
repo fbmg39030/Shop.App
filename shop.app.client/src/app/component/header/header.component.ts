@@ -24,6 +24,11 @@ export class HeaderComponent implements OnInit{
         label: "Cart",
         icon: "pi pi-shopping-bag",
         command: () => this.navigate("cart")
+      },
+      {
+        label: "Data Management",
+        icon: "pi pi-database",
+        command: () => this.navigate("data-management")
       }
     ]
   }
