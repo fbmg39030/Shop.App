@@ -1,0 +1,47 @@
+<h1>Here we can add new products</h1>
+
+<div class="flex col-12 flex-column  justify-content-center" style="gap:.25rem">
+    <div class="flex flex-row flex-wrap justify-content-center col-8 m-auto">
+        <div class="flex flex-column gap-2 col-6">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-tag"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Name" />
+            </p-inputGroup>
+        </div>
+        <div class="flex flex-column gap-2 col-6">
+            <p-inputGroup>
+                <p-inputGroupAddon>$</p-inputGroupAddon>
+                <input type="text" pInputText placeholder="Price" />
+                <p-inputGroupAddon>.00</p-inputGroupAddon>
+            </p-inputGroup>
+        </div>
+    </div>
+    <div class="flex flex-row flex-wrap justify-content-left col-8 m-auto ">
+        <div class="flex flex-column gap-2 col-12">
+            <span class="p-float-label">
+                <textarea id="float-input" rows="5" cols="30" class="w-full" pInputTextarea></textarea>
+                <label for="float-input">Description</label>
+            </span>
+        </div>
+    </div>
+
+    <div class="flex flex-row flex-wrap justify-content-left col-8 m-auto ">
+        <p-fileUpload class="w-full" name="myfile[]" url="https://www.primefaces.org/cdn/api/upload.php" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+            <ng-template pTemplate="toolbar">
+                <div class="py-3">Upload 3 Files</div>
+            </ng-template>
+            <ng-template let-file pTemplate="file">
+                <div>Custom UI to display a file</div>
+            </ng-template>
+            <ng-template pTemplate="content" let-files>
+                <div>The selected files will be shown here.</div>
+            </ng-template>
+        </p-fileUpload>
+    </div>
+
+    <div class="flex flex-row flex-wrap justify-content-left  col-8 m-auto p-3">
+        <button pButton pRipple label="Submit" class="p-button-success w-6 m-auto"></button>
+    </div>
+</div>
