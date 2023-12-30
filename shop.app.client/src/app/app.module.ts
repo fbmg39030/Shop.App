@@ -19,6 +19,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule } from 'primeng/fileupload';
+import { SideBarComponent } from './component/side-bar/side-bar.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     AvailableProductsComponent,
     HeaderComponent,
     CartComponent,
-    DataManagementComponent
+    DataManagementComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
