@@ -24,7 +24,9 @@ import { SideBarComponent } from './component/side-bar/side-bar.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { SidebarButtonComponent } from './component/sidebar-button/sidebar-button.component';
-
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,10 @@ import { SidebarButtonComponent } from './component/sidebar-button/sidebar-butto
     InputGroupAddonModule,
     InputTextareaModule,
     FileUploadModule,
-    ToastModule
+    ToastModule,
+    DataViewModule,
+    TagModule,
+    RatingModule
   ],
   providers: [ 
     { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },

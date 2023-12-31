@@ -3,6 +3,7 @@ import { ProductClient, ProductDto, ProductQp } from '../../../clients/shop-clie
 import { Observable, catchError, lastValueFrom, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { DataViewLayoutOptions } from 'primeng/dataview';
 
 @Component({
   selector: 'app-available-products',
@@ -10,8 +11,18 @@ import { MessageService } from 'primeng/api';
   styleUrl: './available-products.component.css'
 })
 export class AvailableProductsComponent implements OnInit{
+  layout:string = ''
+  products: ProductDto[] = [];
 
-  constructor(private productClient: ProductClient, private messageService: MessageService) {  
+  constructor(private productClient: ProductClient, private messageService: MessageService) { 
+    var productDto = new ProductDto();
+    productDto.name1 = "Test"
+    productDto.description = "TestDescription"
+    productDto.price = 54.2
+    this.products.push(productDto) 
+    this.products.push(productDto) 
+    this.products.push(productDto) 
+    this.products.push(productDto) 
   }
 
   async ngOnInit(): Promise<void> {
@@ -36,5 +47,20 @@ export class AvailableProductsComponent implements OnInit{
       );
     }
   }
+  getSeverity (product: ProductDto) {
+    switch (product.name1) {
+        case 'INSTOCK':
+            return 'success';
+
+        case 'LOWSTOCK':
+            return 'warning';
+
+        case 'OUTOFSTOCK':
+            return 'danger';
+
+        default:
+            return 'danger';
+    }
+};
 
 }
