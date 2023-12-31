@@ -14,22 +14,16 @@ export class AvailableProductsComponent implements OnInit{
   layout:string = ''
   products: ProductDto[] = [];
 
-  constructor(private productClient: ProductClient, private messageService: MessageService) { 
-    var productDto = new ProductDto();
-    productDto.name1 = "Test"
-    productDto.description = "TestDescription"
-    productDto.price = 54.2
-    this.products.push(productDto) 
-    this.products.push(productDto) 
-    this.products.push(productDto) 
-    this.products.push(productDto) 
-  }
+  constructor(private productClient: ProductClient, private messageService: MessageService) { }
 
   async ngOnInit(): Promise<void> {
     const qp :ProductQp=new ProductQp();    
     qp.name1="";
+
     try {    
-      const test = await lastValueFrom(this.productClient.query(qp))
+      const productsFound = await lastValueFrom(this.productClient.query(qp));
+      this.products = productsFound;
+      
       this.messageService.add(
         { 
           severity: 'success',
