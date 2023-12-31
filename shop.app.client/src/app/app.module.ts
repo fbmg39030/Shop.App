@@ -27,6 +27,7 @@ import { SidebarButtonComponent } from './component/sidebar-button/sidebar-butto
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { RatingModule } from 'primeng/rating';
   providers: [ 
     { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },
      ProductClient,
-     MessageService
+     MessageService,
+     ProductService
   ],
   bootstrap: [AppComponent]
 })

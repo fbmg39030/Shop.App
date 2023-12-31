@@ -4,6 +4,7 @@ import { Observable, catchError, lastValueFrom, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { DataViewLayoutOptions } from 'primeng/dataview';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-available-products',
@@ -16,11 +17,13 @@ export class AvailableProductsComponent implements OnInit{
   cartLoidList: string[] = [];
   cartLocalstorageKey: string = "CART_ITEMS";
 
-  constructor(private productClient: ProductClient, private messageService: MessageService) { }
+  constructor(private messageService: MessageService, private productService: ProductService) { }
 
   async ngOnInit(): Promise<void> {
     this.readLoidsFromLocalstorage();
-    await this.queryProducts();
+
+    const qp :ProductQp=new ProductQp();    
+    this.products = await this.productService.queryProducts(qp) ?? [];
   }
   getSeverity (product: ProductDto) {
     switch (product.name1) {
@@ -43,24 +46,6 @@ export class AvailableProductsComponent implements OnInit{
 
     if(result){
       this.cartLoidList = JSON.parse(result)
-    }
-  }
-
-  async queryProducts(){
-    const qp :ProductQp=new ProductQp();    
-    qp.name1="";
-
-    try {    
-      const productsFound = await lastValueFrom(this.productClient.query(qp));
-      this.products = productsFound;
-    } catch (error) {
-      this.messageService.add(
-        { 
-          severity: 'error',
-          summary: 'Query unsuccessful!',
-          detail: 'Something went wrong during the query'
-        }
-      );
     }
   }
 
