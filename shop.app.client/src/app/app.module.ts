@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SideBarComponent } from './component/side-bar/side-bar.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -34,6 +37,7 @@ import { SideBarComponent } from './component/side-bar/side-bar.component';
   imports: [
     BrowserModule, HttpClientModule,
     ButtonModule,
+    BrowserAnimationsModule,
     MenubarModule,
     InputTextModule,
     FormsModule,
@@ -41,11 +45,13 @@ import { SideBarComponent } from './component/side-bar/side-bar.component';
     InputGroupModule,
     InputGroupAddonModule,
     InputTextareaModule,
-    FileUploadModule
+    FileUploadModule,
+    ToastModule
   ],
   providers: [ 
-    {provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },
-     ProductClient
+    { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },
+     ProductClient,
+     MessageService
   ],
   bootstrap: [AppComponent]
 })
