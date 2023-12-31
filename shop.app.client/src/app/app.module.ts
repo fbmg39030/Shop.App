@@ -27,7 +27,7 @@ import { SidebarButtonComponent } from './component/sidebar-button/sidebar-butto
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
-import { ProductService } from './services/product.service';
+import { ProductService } from './services/product/product.service';
 import { LocalstorageService } from './services/localstorage/localstorage.service';
 
 @NgModule({

@@ -4,7 +4,7 @@ import { Observable, catchError, lastValueFrom, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { DataViewLayoutOptions } from 'primeng/dataview';
-import { ProductService } from '../../../services/product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { LocalstorageService } from '../../../services/localstorage/localstorage.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductClient, ProductDto, ProductQp } from '../clients/shop-client';
+import { ProductClient, ProductDto, ProductQp } from '../../clients/shop-client';
 import { lastValueFrom } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
