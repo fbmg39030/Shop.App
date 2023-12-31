@@ -7,13 +7,13 @@
                 <p-inputGroupAddon>
                     <i class="pi pi-tag"></i>
                 </p-inputGroupAddon>
-                <input pInputText placeholder="Name" />
+                <input pInputText placeholder="Name" [(ngModel)]="productName" />
             </p-inputGroup>
         </div>
         <div class="flex flex-column gap-2 col-6">
             <p-inputGroup>
                 <p-inputGroupAddon>$</p-inputGroupAddon>
-                <input type="text" pInputText placeholder="Price" />
+                <input type="text" pInputText placeholder="Price" [(ngModel)]="productPrice" />
                 <p-inputGroupAddon>.00</p-inputGroupAddon>
             </p-inputGroup>
         </div>
@@ -21,7 +21,7 @@
     <div class="flex flex-row flex-wrap justify-content-left col-8 m-auto ">
         <div class="flex flex-column gap-2 col-12">
             <span class="p-float-label">
-                <textarea id="float-input" rows="5" cols="30" class="w-full" pInputTextarea></textarea>
+                <textarea id="float-input" rows="5" cols="30" class="w-full" pInputTextarea [(ngModel)]="productDescription"></textarea>
                 <label for="float-input">Description</label>
             </span>
         </div>
@@ -42,6 +42,6 @@
     </div>
 
     <div class="flex flex-row flex-wrap justify-content-left  col-8 m-auto p-3">
-        <button pButton pRipple label="Submit" class="p-button-success w-6 m-auto"></button>
+        <button pButton pRipple label="Submit" class="p-button-success w-6 m-auto" (click)="submit()"></button>
     </div>
 </div>
