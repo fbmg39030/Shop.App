@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { MessageService } from 'primeng/api';
 import { DataViewLayoutOptions } from 'primeng/dataview';
 import { ProductService } from '../../../services/product.service';
+import { LocalstorageService } from '../../../services/localstorage/localstorage.service';
 
 @Component({
   selector: 'app-available-products',
@@ -14,17 +15,15 @@ import { ProductService } from '../../../services/product.service';
 export class AvailableProductsComponent implements OnInit{
   layout:string = ''
   products: ProductDto[] = [];
-  cartLoidList: string[] = [];
-  cartLocalstorageKey: string = "CART_ITEMS";
 
-  constructor(private messageService: MessageService, private productService: ProductService) { }
+  constructor(private messageService: MessageService, private productService: ProductService, private localstorageService: LocalstorageService) { }
 
   async ngOnInit(): Promise<void> {
-    this.readLoidsFromLocalstorage();
 
     const qp :ProductQp=new ProductQp();    
     this.products = await this.productService.queryProducts(qp) ?? [];
   }
+
   getSeverity (product: ProductDto) {
     switch (product.name1) {
         case 'INSTOCK':
@@ -41,23 +40,8 @@ export class AvailableProductsComponent implements OnInit{
     }
   };
 
-  readLoidsFromLocalstorage(){
-    const result = localStorage.getItem(this.cartLocalstorageKey);
-
-    if(result){
-      this.cartLoidList = JSON.parse(result)
-    }
-  }
-
   addToCard(product: ProductDto){
-    if(this.cartLoidList.some(loid => loid == product.logicalObjectId)){
-      this.messageService.add({ "severity": "error", "summary": "Duplicate product", "detail":"Product already in cart!"})
-      return;
-    }
-  
-    this.cartLoidList.push(product!.logicalObjectId!.toString());
-    localStorage.setItem(this.cartLocalstorageKey, JSON.stringify(this.cartLoidList));
-    this.messageService.add({ "severity": "success", "summary": "Operation successful", "detail":"Product added successfully!!"})
+    this.localstorageService.addToCart(product)
   }
 
 }

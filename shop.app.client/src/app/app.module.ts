@@ -28,6 +28,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { ProductService } from './services/product.service';
+import { LocalstorageService } from './services/localstorage/localstorage.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ProductService } from './services/product.service';
     { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },
      ProductClient,
      MessageService,
-     ProductService
+     ProductService,
+     LocalstorageService
   ],
   bootstrap: [AppComponent]
 })
