@@ -44,7 +44,7 @@ import { SideBarComponent } from './component/side-bar/side-bar.component';
     FileUploadModule
   ],
   providers: [ 
-    {provide: SHOP_API_BASE_URL, useValue: "http://localhost:8080" },
+    {provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },
      ProductClient
   ],
   bootstrap: [AppComponent]
