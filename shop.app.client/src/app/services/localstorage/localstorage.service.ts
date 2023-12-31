@@ -12,15 +12,17 @@ export class LocalstorageService implements OnInit{
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.readLoidsFromLocalstorage();
+    this.cartLoidList = this.getLoidsInLocalstorage();
   }
 
-  readLoidsFromLocalstorage(){
+  getLoidsInLocalstorage(){
     const result = localStorage.getItem(CART_LOCALSTORAGE_KEY);
 
     if(result){
-      this.cartLoidList = JSON.parse(result)
+      return JSON.parse(result)
     }
+
+    return [];
   }
 
   addToCart(product: ProductDto){
