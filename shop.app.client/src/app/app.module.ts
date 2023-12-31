@@ -23,6 +23,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { SideBarComponent } from './component/side-bar/side-bar.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { SidebarButtonComponent } from './component/sidebar-button/sidebar-button.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MessageService } from 'primeng/api';
     HeaderComponent,
     CartComponent,
     DataManagementComponent,
-    SideBarComponent
+    SideBarComponent,
+    SidebarButtonComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

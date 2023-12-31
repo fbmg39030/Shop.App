@@ -1,0 +1,42 @@
+.buttonWithText {
+    text-align: end;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .textLenghtLimit {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+  
+  .sideNavButton .p-button-label {
+    width: 0;
+  }
+  
+  #parent-hover:enabled:hover #button-hover-icon,
+  #parent-hover:focus #button-hover-icon {
+    color: #20a956;
+  }
+  
+  #parent-hover:enabled:hover .button-div .custom-icon,
+  #parent-hover:focus .button-div .custom-icon {
+    background-color: #20a956;
+  }
+  #parent-hover:enabled:hover .button-div .custom-icon,
+  #parent-hover:focus .button-div .buttonWithLabel {
+    color: #20a956;
+  }
+  
+  .button-div {
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .buttonWithText {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  }
+  

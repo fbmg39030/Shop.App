@@ -1,7 +1,12 @@
 <div class="side-bar-hover-menu fixed" id="side-bar-hover-menu">
     <header class="side-bar-header" id="side-bar-menu">
         <div class="side-bar-menu" style="color:white">
-          TEST
+          <app-sidebar-button [buttonColor]="'white'" [buttonText]="'Home'" [buttonIcon]="'pi pi-home'" 
+          (click)="navigate('')"></app-sidebar-button>
+          <app-sidebar-button [buttonColor]="'white'" [buttonText]="'Cart'" [buttonIcon]="'pi pi-shopping-bag'" 
+          (click)="navigate('cart')"></app-sidebar-button>
+          <app-sidebar-button [buttonColor]="'white'" [buttonText]="'Data Management'" [buttonIcon]="'pi pi-database'" 
+          (click)="navigate('data-management')"></app-sidebar-button>
         </div>
       </header>      
   </div>
