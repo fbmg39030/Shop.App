@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductClient, ProductDto, ProductQp } from '../../clients/shop-client'
+import { ProductClient, ProductDto, ProductQp } from '../../../clients/shop-client'
 import { Observable, catchError, lastValueFrom, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'primeng/api';

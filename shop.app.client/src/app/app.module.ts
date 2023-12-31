@@ -7,14 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductClient, SHOP_API_BASE_URL } from './clients/shop-client';
-import { AvailableProductsComponent } from './component/available-products/available-products.component';
+import { AvailableProductsComponent } from './component/_pages/available-products/available-products.component';
 import { HeaderComponent } from './component/header/header.component';
-import { DataManagementComponent } from './component/data-management/data-management.component';
+import { DataManagementComponent } from './component/_pages/data-management/data-management.component';
 
 //primeng imports
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
-import { CartComponent } from './component/cart/cart.component';
+import { CartComponent } from './component/_pages/cart/cart.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
