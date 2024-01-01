@@ -29,6 +29,7 @@ import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { ProductService } from './services/product/product.service';
 import { LocalstorageService } from './services/localstorage/localstorage.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { LocalstorageService } from './services/localstorage/localstorage.servic
     ToastModule,
     DataViewModule,
     TagModule,
-    RatingModule
+    RatingModule,
+    ProgressSpinnerModule
   ],
   providers: [ 
     { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },

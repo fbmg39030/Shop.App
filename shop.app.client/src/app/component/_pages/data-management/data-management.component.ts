@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductAddOrUpdateRequest, ProductClient } from '../../../clients/shop-client';
 import { lastValueFrom } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { SessionService } from '../../../services/session/session.service';
 
 @Component({
   selector: 'app-data-management',
@@ -13,9 +14,11 @@ export class DataManagementComponent {
   productPrice: string = "";
   productDescription: string = "";
 
-  constructor(private productClient: ProductClient, private messageService: MessageService) {  }
+  constructor(private productClient: ProductClient, private messageService: MessageService,
+              private sessionService: SessionService) {  }
 
   public async submit(){
+    this.sessionService.isSpinnerLoading = true; 
     let request = new ProductAddOrUpdateRequest();
     request.name1 = this.productName;
     request.description = this.productName;
@@ -28,6 +31,15 @@ export class DataManagementComponent {
       }
     } catch (error) {
       this.messageService.add({"severity":"error", "summary":"An error occurred", "detail":"Adding product was not possible!"})
+    } finally{
+      this.sessionService.isSpinnerLoading = false;
+      this.clearFields();
     }
+
+  }
+  clearFields() {
+    this.productName = "";
+    this.productDescription = "";
+    this.productPrice = "";
   }
 }
