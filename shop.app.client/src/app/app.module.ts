@@ -10,6 +10,9 @@ import { ProductClient, SHOP_API_BASE_URL } from './clients/shop-client';
 import { AvailableProductsComponent } from './component/_pages/available-products/available-products.component';
 import { HeaderComponent } from './component/header/header.component';
 import { DataManagementComponent } from './component/_pages/data-management/data-management.component';
+import { ProductDetailComponent } from './component/_pages/product-detail/product-detail.component';
+import { ProductService } from './services/product/product.service';
+import { LocalstorageService } from './services/localstorage/localstorage.service';
 
 //primeng imports
 import { ButtonModule } from 'primeng/button';
@@ -27,8 +30,6 @@ import { SidebarButtonComponent } from './component/sidebar-button/sidebar-butto
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
-import { ProductService } from './services/product/product.service';
-import { LocalstorageService } from './services/localstorage/localstorage.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
 
@@ -40,7 +41,8 @@ import { DropdownModule } from 'primeng/dropdown';
     CartComponent,
     DataManagementComponent,
     SideBarComponent,
-    SidebarButtonComponent
+    SidebarButtonComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
