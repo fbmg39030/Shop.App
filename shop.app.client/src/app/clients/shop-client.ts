@@ -66,11 +66,12 @@ export class OrderClient {
             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _mappings: { source: any, target: any }[] = [];
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = OrderDto.fromJS(resultData200);
+            let resultData200 = _responseText === "" ? null : jsonParse(_responseText, this.jsonParseReviver);
+            result200 = OrderDto.fromJS(resultData200, _mappings);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -121,14 +122,15 @@ export class OrderClient {
             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _mappings: { source: any, target: any }[] = [];
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200 = _responseText === "" ? null : jsonParse(_responseText, this.jsonParseReviver);
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(OrderDto.fromJS(item));
+                    result200!.push(OrderDto.fromJS(item, _mappings));
             }
             else {
                 result200 = <any>null;
@@ -195,14 +197,15 @@ export class ProductClient {
             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _mappings: { source: any, target: any }[] = [];
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200 = _responseText === "" ? null : jsonParse(_responseText, this.jsonParseReviver);
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(ProductDto.fromJS(item));
+                    result200!.push(ProductDto.fromJS(item, _mappings));
             }
             else {
                 result200 = <any>null;
@@ -257,11 +260,12 @@ export class ProductClient {
             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _mappings: { source: any, target: any }[] = [];
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ProductDto.fromJS(resultData200);
+            let resultData200 = _responseText === "" ? null : jsonParse(_responseText, this.jsonParseReviver);
+            result200 = ProductDto.fromJS(resultData200, _mappings);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -320,14 +324,15 @@ export class Client {
             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        let _mappings: { source: any, target: any }[] = [];
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            let resultData200 = _responseText === "" ? null : jsonParse(_responseText, this.jsonParseReviver);
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(WeatherForecast.fromJS(item));
+                    result200!.push(WeatherForecast.fromJS(item, _mappings));
             }
             else {
                 result200 = <any>null;
@@ -357,7 +362,7 @@ export class CreateOrderPositionRequest implements ICreateOrderPositionRequest {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.productLoid = _data["productLoid"];
             this.quantity = _data["quantity"];
@@ -365,11 +370,9 @@ export class CreateOrderPositionRequest implements ICreateOrderPositionRequest {
         }
     }
 
-    static fromJS(data: any): CreateOrderPositionRequest {
+    static fromJS(data: any, _mappings?: any): CreateOrderPositionRequest | null {
         data = typeof data === 'object' ? data : {};
-        let result = new CreateOrderPositionRequest();
-        result.init(data);
-        return result;
+        return createInstance<CreateOrderPositionRequest>(data, _mappings, CreateOrderPositionRequest);
     }
 
     toJSON(data?: any) {
@@ -404,7 +407,7 @@ export class DateOnly implements IDateOnly {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.year = _data["year"];
             this.month = _data["month"];
@@ -415,11 +418,9 @@ export class DateOnly implements IDateOnly {
         }
     }
 
-    static fromJS(data: any): DateOnly {
+    static fromJS(data: any, _mappings?: any): DateOnly | null {
         data = typeof data === 'object' ? data : {};
-        let result = new DateOnly();
-        result.init(data);
-        return result;
+        return createInstance<DateOnly>(data, _mappings, DateOnly);
     }
 
     toJSON(data?: any) {
@@ -465,21 +466,19 @@ export class OrderCreateOrUpdateRequest implements IOrderCreateOrUpdateRequest {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             if (Array.isArray(_data["oderPositionRequests"])) {
                 this.oderPositionRequests = [] as any;
                 for (let item of _data["oderPositionRequests"])
-                    this.oderPositionRequests!.push(CreateOrderPositionRequest.fromJS(item));
+                    this.oderPositionRequests!.push(CreateOrderPositionRequest.fromJS(item, _mappings)!);
             }
         }
     }
 
-    static fromJS(data: any): OrderCreateOrUpdateRequest {
+    static fromJS(data: any, _mappings?: any): OrderCreateOrUpdateRequest | null {
         data = typeof data === 'object' ? data : {};
-        let result = new OrderCreateOrUpdateRequest();
-        result.init(data);
-        return result;
+        return createInstance<OrderCreateOrUpdateRequest>(data, _mappings, OrderCreateOrUpdateRequest);
     }
 
     toJSON(data?: any) {
@@ -514,7 +513,7 @@ export class OrderDto implements IOrderDto {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.logicalObjectId = _data["logicalObjectId"];
             this.createdAt = _data["createdAt"] ? new Date(_data["createdAt"].toString()) : <any>undefined;
@@ -524,16 +523,14 @@ export class OrderDto implements IOrderDto {
             if (Array.isArray(_data["orderPositionList"])) {
                 this.orderPositionList = [] as any;
                 for (let item of _data["orderPositionList"])
-                    this.orderPositionList!.push(OrderPositionDto.fromJS(item));
+                    this.orderPositionList!.push(OrderPositionDto.fromJS(item, _mappings)!);
             }
         }
     }
 
-    static fromJS(data: any): OrderDto {
+    static fromJS(data: any, _mappings?: any): OrderDto | null {
         data = typeof data === 'object' ? data : {};
-        let result = new OrderDto();
-        result.init(data);
-        return result;
+        return createInstance<OrderDto>(data, _mappings, OrderDto);
     }
 
     toJSON(data?: any) {
@@ -578,22 +575,20 @@ export class OrderPositionDto implements IOrderPositionDto {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.logicalObjectId = _data["logicalObjectId"];
             this.createdAt = _data["createdAt"] ? new Date(_data["createdAt"].toString()) : <any>undefined;
             this.lastModifiedAt = _data["lastModifiedAt"] ? new Date(_data["lastModifiedAt"].toString()) : <any>undefined;
-            this.product = _data["product"] ? ProductDto.fromJS(_data["product"]) : <any>undefined;
+            this.product = _data["product"] ? ProductDto.fromJS(_data["product"], _mappings) : <any>undefined;
             this.quantity = _data["quantity"];
             this.unitPrice = _data["unitPrice"];
         }
     }
 
-    static fromJS(data: any): OrderPositionDto {
+    static fromJS(data: any, _mappings?: any): OrderPositionDto | null {
         data = typeof data === 'object' ? data : {};
-        let result = new OrderPositionDto();
-        result.init(data);
-        return result;
+        return createInstance<OrderPositionDto>(data, _mappings, OrderPositionDto);
     }
 
     toJSON(data?: any) {
@@ -631,7 +626,7 @@ export class OrderQp implements IOrderQp {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.logicalObjectId = _data["logicalObjectId"];
             if (Array.isArray(_data["loidList"])) {
@@ -643,11 +638,9 @@ export class OrderQp implements IOrderQp {
         }
     }
 
-    static fromJS(data: any): OrderQp {
+    static fromJS(data: any, _mappings?: any): OrderQp | null {
         data = typeof data === 'object' ? data : {};
-        let result = new OrderQp();
-        result.init(data);
-        return result;
+        return createInstance<OrderQp>(data, _mappings, OrderQp);
     }
 
     toJSON(data?: any) {
@@ -674,6 +667,8 @@ export class ProductAddOrUpdateRequest implements IProductAddOrUpdateRequest {
     name1?: string | undefined;
     description?: string | undefined;
     price?: number;
+    tag?: string | undefined;
+    status?: ProductStatus;
 
     constructor(data?: IProductAddOrUpdateRequest) {
         if (data) {
@@ -684,20 +679,20 @@ export class ProductAddOrUpdateRequest implements IProductAddOrUpdateRequest {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.logicalObjectId = _data["logicalObjectId"];
             this.name1 = _data["name1"];
             this.description = _data["description"];
             this.price = _data["price"];
+            this.tag = _data["tag"];
+            this.status = _data["status"];
         }
     }
 
-    static fromJS(data: any): ProductAddOrUpdateRequest {
+    static fromJS(data: any, _mappings?: any): ProductAddOrUpdateRequest | null {
         data = typeof data === 'object' ? data : {};
-        let result = new ProductAddOrUpdateRequest();
-        result.init(data);
-        return result;
+        return createInstance<ProductAddOrUpdateRequest>(data, _mappings, ProductAddOrUpdateRequest);
     }
 
     toJSON(data?: any) {
@@ -706,6 +701,8 @@ export class ProductAddOrUpdateRequest implements IProductAddOrUpdateRequest {
         data["name1"] = this.name1;
         data["description"] = this.description;
         data["price"] = this.price;
+        data["tag"] = this.tag;
+        data["status"] = this.status;
         return data;
     }
 }
@@ -715,6 +712,8 @@ export interface IProductAddOrUpdateRequest {
     name1?: string | undefined;
     description?: string | undefined;
     price?: number;
+    tag?: string | undefined;
+    status?: ProductStatus;
 }
 
 export class ProductDto implements IProductDto {
@@ -724,6 +723,8 @@ export class ProductDto implements IProductDto {
     name1?: string | undefined;
     description?: string | undefined;
     price?: number;
+    status?: ProductStatus;
+    tag?: string | undefined;
 
     constructor(data?: IProductDto) {
         if (data) {
@@ -734,7 +735,7 @@ export class ProductDto implements IProductDto {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.logicalObjectId = _data["logicalObjectId"];
             this.createdAt = _data["createdAt"] ? new Date(_data["createdAt"].toString()) : <any>undefined;
@@ -742,14 +743,14 @@ export class ProductDto implements IProductDto {
             this.name1 = _data["name1"];
             this.description = _data["description"];
             this.price = _data["price"];
+            this.status = _data["status"];
+            this.tag = _data["tag"];
         }
     }
 
-    static fromJS(data: any): ProductDto {
+    static fromJS(data: any, _mappings?: any): ProductDto | null {
         data = typeof data === 'object' ? data : {};
-        let result = new ProductDto();
-        result.init(data);
-        return result;
+        return createInstance<ProductDto>(data, _mappings, ProductDto);
     }
 
     toJSON(data?: any) {
@@ -760,6 +761,8 @@ export class ProductDto implements IProductDto {
         data["name1"] = this.name1;
         data["description"] = this.description;
         data["price"] = this.price;
+        data["status"] = this.status;
+        data["tag"] = this.tag;
         return data;
     }
 }
@@ -771,6 +774,8 @@ export interface IProductDto {
     name1?: string | undefined;
     description?: string | undefined;
     price?: number;
+    status?: ProductStatus;
+    tag?: string | undefined;
 }
 
 export class ProductQp implements IProductQp {
@@ -789,7 +794,7 @@ export class ProductQp implements IProductQp {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
             this.logicalObjectId = _data["logicalObjectId"];
             if (Array.isArray(_data["loidList"])) {
@@ -803,11 +808,9 @@ export class ProductQp implements IProductQp {
         }
     }
 
-    static fromJS(data: any): ProductQp {
+    static fromJS(data: any, _mappings?: any): ProductQp | null {
         data = typeof data === 'object' ? data : {};
-        let result = new ProductQp();
-        result.init(data);
-        return result;
+        return createInstance<ProductQp>(data, _mappings, ProductQp);
     }
 
     toJSON(data?: any) {
@@ -833,6 +836,13 @@ export interface IProductQp {
     price?: number;
 }
 
+export enum ProductStatus {
+    _0 = 0,
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
+}
+
 export class WeatherForecast implements IWeatherForecast {
     date?: DateOnly;
     temperatureC?: number;
@@ -848,20 +858,18 @@ export class WeatherForecast implements IWeatherForecast {
         }
     }
 
-    init(_data?: any) {
+    init(_data?: any, _mappings?: any) {
         if (_data) {
-            this.date = _data["date"] ? DateOnly.fromJS(_data["date"]) : <any>undefined;
+            this.date = _data["date"] ? DateOnly.fromJS(_data["date"], _mappings) : <any>undefined;
             this.temperatureC = _data["temperatureC"];
             this.summary = _data["summary"];
             (<any>this).temperatureF = _data["temperatureF"];
         }
     }
 
-    static fromJS(data: any): WeatherForecast {
+    static fromJS(data: any, _mappings?: any): WeatherForecast | null {
         data = typeof data === 'object' ? data : {};
-        let result = new WeatherForecast();
-        result.init(data);
-        return result;
+        return createInstance<WeatherForecast>(data, _mappings, WeatherForecast);
     }
 
     toJSON(data?: any) {
@@ -879,6 +887,67 @@ export interface IWeatherForecast {
     temperatureC?: number;
     summary?: string | undefined;
     temperatureF?: number;
+}
+
+function jsonParse(json: any, reviver?: any) {
+    json = JSON.parse(json, reviver);
+
+    var byid: any = {};
+    var refs: any = [];
+    json = (function recurse(obj: any, prop?: any, parent?: any) {
+        if (typeof obj !== 'object' || !obj)
+            return obj;
+        
+        if ("$ref" in obj) {
+            let ref = obj.$ref;
+            if (ref in byid)
+                return byid[ref];
+            refs.push([parent, prop, ref]);
+            return undefined;
+        } else if ("$id" in obj) {
+            let id = obj.$id;
+            delete obj.$id;
+            if ("$values" in obj)
+                obj = obj.$values;
+            byid[id] = obj;
+        }
+        
+        if (Array.isArray(obj)) {
+            obj = obj.map((v, i) => recurse(v, i, obj));
+        } else {
+            for (var p in obj) {
+                if (obj.hasOwnProperty(p) && obj[p] && typeof obj[p] === 'object')
+                    obj[p] = recurse(obj[p], p, obj);
+            }
+        }
+
+        return obj;
+    })(json);
+
+    for (let i = 0; i < refs.length; i++) {
+        const ref = refs[i];
+        ref[0][ref[1]] = byid[ref[2]];
+    }
+
+    return json;
+}
+
+function createInstance<T>(data: any, mappings: any, type: any): T | null {
+  if (!mappings)
+    mappings = [];
+  if (!data)
+    return null;
+
+  const mappingIndexName = "__mappingIndex";
+  if (data[mappingIndexName])
+    return <T>mappings[data[mappingIndexName]].target;
+
+  data[mappingIndexName] = mappings.length;
+
+  let result: any = new type();
+  mappings.push({ source: data, target: result });
+  result.init(data, mappings);
+  return result;
 }
 
 export class ApiException extends Error {
@@ -906,10 +975,7 @@ export class ApiException extends Error {
 }
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
-    if (result !== null && result !== undefined)
-        return _observableThrow(result);
-    else
-        return _observableThrow(new ApiException(message, status, response, headers, null));
+    return _observableThrow(new ApiException(message, status, response, headers, result));
 }
 
 function blobToText(blob: any): Observable<string> {

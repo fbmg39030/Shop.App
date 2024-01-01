@@ -30,6 +30,7 @@ import { RatingModule } from 'primeng/rating';
 import { ProductService } from './services/product/product.service';
 import { LocalstorageService } from './services/localstorage/localstorage.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     DataViewModule,
     TagModule,
     RatingModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DropdownModule
   ],
   providers: [ 
     { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },

@@ -2,8 +2,8 @@
     <p-dataView #dv [value]="products" [layout]="'grid'" >
         <ng-template let-product pTemplate="grid" let-products>
             <div class="grid grid-nogutter">
-                <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2" *ngFor="let product of products">
-                    <div class="p-4 border-1 surface-border surface-card border-round">
+                <div class="col-12 md:col-6 xl:col-4 p-2" *ngFor="let product of products">
+                    <div class="p-2 border-1 surface-border surface-card border-round">
                         <div class="flex flex-wrap align-items-center justify-content-between gap-2">
                             <span class="flex align-items-center gap-2">
                                 <i class="pi pi-tag"></i>

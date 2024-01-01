@@ -5,7 +5,7 @@
         <div class="flex flex-column gap-2 col-6">
             <p-inputGroup>
                 <p-inputGroupAddon>
-                    <i class="pi pi-tag"></i>
+                    <i class="pi pi-th-large"></i>
                 </p-inputGroupAddon>
                 <input pInputText placeholder="Name" [(ngModel)]="productName" />
             </p-inputGroup>
@@ -17,6 +17,17 @@
                 <p-inputGroupAddon>.00</p-inputGroupAddon>
             </p-inputGroup>
         </div>
+        <div class="flex flex-column gap-2 col-6">
+            <p-inputGroup>
+                <p-inputGroupAddon>
+                    <i class="pi pi-tag"></i>
+                </p-inputGroupAddon>
+                <input pInputText placeholder="Tag" [(ngModel)]="productTag" />
+            </p-inputGroup>
+        </div>
+            <div class="flex flex-column gap-2 col-6">
+                <p-dropdown class="w-full flex w-full" [options]="statusOptions" [(ngModel)]="selectedStatus" placeholder="Select a status"></p-dropdown>
+            </div>
     </div>
     <div class="flex flex-row flex-wrap justify-content-left col-8 m-auto ">
         <div class="flex flex-column gap-2 col-12">
