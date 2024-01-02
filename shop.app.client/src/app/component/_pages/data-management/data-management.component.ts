@@ -35,7 +35,7 @@ export class DataManagementComponent implements OnInit{
     this.sessionService.isSpinnerLoading = true; 
     let request = new ProductAddOrUpdateRequest();
     request.name1 = this.productName;
-    request.description = this.productName;
+    request.description = this.productDescription;
     request.price = +this.productPrice;
     request.tag = this.productTag;
     request.status = this.selectedStatus ? this.selectedStatus.code : ProductStatus._0;
