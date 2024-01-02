@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { ProductDto, ProductStatus } from '../../clients/shop-client';
+import { STATUS_INACTIVE, STATUS_INSTOCK, STATUS_LOWSTOCK, STATUS_OUTOFSTOCK } from '../../app-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -13,4 +15,24 @@ export class SessionService {
   }
 
   constructor() { }
+
+  
+  getStatusName(productDto: ProductDto) {
+    switch (productDto.status) {
+      case ProductStatus._0:
+        return STATUS_INSTOCK;
+
+      case ProductStatus._1: 
+        return STATUS_LOWSTOCK;
+
+      case ProductStatus._2:
+        return STATUS_OUTOFSTOCK;
+
+      case ProductStatus._3: 
+        return STATUS_INACTIVE
+
+      default: 
+        return NaN;
+    }
+  }
 }
