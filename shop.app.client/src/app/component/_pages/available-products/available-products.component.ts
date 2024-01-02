@@ -7,6 +7,7 @@ import { DataViewLayoutOptions } from 'primeng/dataview';
 import { ProductService } from '../../../services/product/product.service';
 import { LocalstorageService } from '../../../services/localstorage/localstorage.service';
 import { Router } from '@angular/router';
+import { SessionService } from '../../../services/session/session.service';
 
 @Component({
   selector: 'app-available-products',
@@ -18,7 +19,8 @@ export class AvailableProductsComponent implements OnInit{
   products: ProductDto[] = [];
 
   constructor(private messageService: MessageService, private productService: ProductService, 
-              private localstorageService: LocalstorageService, private router: Router) { }
+              private localstorageService: LocalstorageService, private router: Router,
+              public sessionService: SessionService) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -49,5 +51,5 @@ export class AvailableProductsComponent implements OnInit{
   navigateToDetail(product: ProductDto) {
     this.router.navigate(["product-detail", { loid: product.logicalObjectId }]);
   }
-
+  
 }
