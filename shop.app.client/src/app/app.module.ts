@@ -32,6 +32,8 @@ import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { DropdownModule } from 'primeng/dropdown';
     TagModule,
     RatingModule,
     ProgressSpinnerModule,
-    DropdownModule
+    DropdownModule,
+    TooltipModule
   ],
   providers: [ 
     { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },
