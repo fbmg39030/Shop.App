@@ -23,26 +23,13 @@ export class AvailableProductsComponent implements OnInit{
               public sessionService: SessionService) { }
 
   async ngOnInit(): Promise<void> {
-
+    this.sessionService.isSpinnerLoading = true;
+    
     const qp :ProductQp=new ProductQp();    
     this.products = await this.productService.queryProducts(qp) ?? [];
+
+    this.sessionService.isSpinnerLoading = false;
   }
-
-  getSeverity (product: ProductDto) {
-    switch (product.status) {
-        case ProductStatus._0:
-            return 'success';
-
-        case ProductStatus._1:
-            return 'warning';
-
-        case ProductStatus._2:
-            return 'danger';
-
-        default:
-            return 'danger';
-    }
-  };
 
   addToCard(product: ProductDto){
     this.localstorageService.addToCart(product)

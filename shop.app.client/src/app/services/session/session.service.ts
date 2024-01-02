@@ -35,4 +35,20 @@ export class SessionService {
         return NaN;
     }
   }
+
+  getSeverity (product: ProductDto) {
+    switch (product.status) {
+        case ProductStatus._0:
+            return 'success';
+
+        case ProductStatus._1:
+            return 'warning';
+
+        case ProductStatus._2:
+            return 'danger';
+
+        default:
+            return 'danger';
+    }
+  };
 }
