@@ -1,1 +1,18 @@
-<p>product-detail works!</p>
+<div class="flex flex-column w-full h-full border-solid p-4" >
+    <div class="flex justify-content-between">
+        <h1 class="text-left">{{currentProductDto.name1}}</h1>
+        <div class="flex" style="gap: 1rem">
+            <span class="flex align-items-center gap-2">
+                <i class="pi pi-tag"></i>
+                <span class="font-semibold">{{ currentProductDto.tag }}</span>
+            </span>
+            <p-tag class="flex align-items-center" [value]="''+this.sessionService.getStatusName(currentProductDto)" [severity]="''+this.sessionService.getSeverity(currentProductDto)"></p-tag>
+        </div>
+    </div>
+    <div class="flex flex-row w-full h-full" style="background-color: white; max-height: 400px;">
+        <div class="col-6 border-solid">
+            <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg'" class="w-full h-full" alt="">
+        </div>
+        <div class="col-6 border-solid">fdsaf</div>
+    </div>
+</div>
