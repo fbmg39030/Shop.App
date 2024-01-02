@@ -4,7 +4,7 @@
     <div class="md:ml-7 relative z-0 w-full" style="min-height: calc(100vh - 57px);">
         <router-outlet></router-outlet>
         <div *ngIf="this.sessionService.isSpinnerLoading"  class="absolute top-0 left-0 right-0 bottom-0 h-full" style="background: rgba(50, 50, 50, .5);">
-            <p-progressSpinner  styleClass="absolute" [style]="{'top':'calc(50% - 50px)','left':'calc(50% - 50px)'}"></p-progressSpinner>
+            <p-progressSpinner  styleClass="absolute" [style]="{'top':'calc(50vh - 50px)','left':'calc(50vw - 50px)'}"></p-progressSpinner>
         </div>
     </div>
 </div>
