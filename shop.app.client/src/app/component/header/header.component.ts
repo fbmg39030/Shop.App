@@ -20,16 +20,16 @@ export class HeaderComponent implements OnInit{
         icon: "pi pi-home",
         command: () => this.navigate("")
       },
-      {
-        label: "Cart",
-        icon: "pi pi-shopping-bag",
-        command: () => this.navigate("cart")
-      },
-      {
-        label: "Data Management",
-        icon: "pi pi-database",
-        command: () => this.navigate("data-management")
-      }
+      // {
+      //   label: "Cart",
+      //   icon: "pi pi-shopping-bag",
+      //   command: () => this.navigate("cart")
+      // },
+      // {
+      //   label: "Data Management",
+      //   icon: "pi pi-database",
+      //   command: () => this.navigate("data-management")
+      // }
     ]
   }
 

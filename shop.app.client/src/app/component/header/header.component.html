@@ -1,1 +1,8 @@
-<p-menubar [model]="items"></p-menubar>
+<p-menubar [model]="items">
+    <ng-template pTemplate="end">
+        <div class="flex" style="gap:.5rem">
+            <p-button icon="pi pi-user" [rounded]="false" [outlined]="true" [style]="{'color':'#4b5563'}" (onClick)="navigate('user')"></p-button>
+            <p-button icon="pi pi-shopping-cart" [rounded]="false" [outlined]="true" [style]="{'color':'#4b5563'}" (onClick)="navigate('cart')"></p-button>
+        </div>
+    </ng-template>
+</p-menubar>
