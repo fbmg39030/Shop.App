@@ -15,11 +15,11 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
     this.items = [
-      {
-        label: "Home",
-        icon: "pi pi-home",
-        command: () => this.navigate("")
-      },
+      // {
+      //   label: "Home",
+      //   icon: "pi pi-home",
+      //   command: () => this.navigate("")
+      // },
       // {
       //   label: "Cart",
       //   icon: "pi pi-shopping-bag",

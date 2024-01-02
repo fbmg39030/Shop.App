@@ -12,7 +12,7 @@ import { SessionService } from '../../../services/session/session.service';
 @Component({
   selector: 'app-available-products',
   templateUrl: './available-products.component.html',
-  styleUrl: './available-products.component.css'
+  styleUrl: './available-products.component.scss'
 })
 export class AvailableProductsComponent implements OnInit{
   layout:string = ''
@@ -51,5 +51,5 @@ export class AvailableProductsComponent implements OnInit{
   navigateToDetail(product: ProductDto) {
     this.router.navigate(["product-detail", { loid: product.logicalObjectId }]);
   }
-  
+
 }
