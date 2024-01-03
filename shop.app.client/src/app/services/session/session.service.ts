@@ -18,6 +18,8 @@ export class SessionService {
 
   
   getStatusName(productDto: ProductDto) {
+    if(!productDto) return;
+
     switch (productDto.status) {
       case ProductStatus._0:
         return STATUS_INSTOCK;
@@ -37,6 +39,8 @@ export class SessionService {
   }
 
   getSeverity (product: ProductDto) {
+    if(!product) return;
+    
     switch (product.status) {
         case ProductStatus._0:
             return 'success';
