@@ -1,18 +1,42 @@
-<div class="flex flex-column w-full h-full border-solid p-4" >
-    <div class="flex justify-content-between">
-        <h1 class="text-left">{{currentProductDto.name1}}</h1>
-        <div class="flex" style="gap: 1rem">
-            <span class="flex align-items-center gap-2">
+<div class="flex flex-column w-full h-full p-4" style="gap:.5rem">
+    <div class="flex justify-content-between border-round border-1 surface-border p-2" style="background-color: white;">
+        <h3 class="text-left m-1">{{currentProductDto.name1}}</h3>
+        <div class="flex flex-column gap-1">
+            <span class="product-tag flex align-items-center gap-2" >
                 <i class="pi pi-tag"></i>
                 <span class="font-semibold">{{ currentProductDto.tag }}</span>
             </span>
-            <p-tag class="flex align-items-center" [value]="''+this.sessionService.getStatusName(currentProductDto)" [severity]="''+this.sessionService.getSeverity(currentProductDto)"></p-tag>
+            <p-tag class="product-status flex justify-content-end" [value]="''+this.sessionService.getStatusName(currentProductDto)" 
+            [severity]="''+this.sessionService.getSeverity(currentProductDto)"></p-tag>
         </div>
     </div>
-    <div class="flex flex-row w-full h-full" style="background-color: white; max-height: 400px;">
-        <div class="col-6 border-solid">
+   
+    <div class="flex flex-row w-full h-full border-round border-1 surface-border" style="background-color: white; max-height: 400px;">
+        <div class="col-6 ">
             <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg'" class="w-full h-full" alt="">
         </div>
-        <div class="col-6 border-solid">fdsaf</div>
+        <div class="col-6 ">
+            <h3>Specifications</h3>
+            <table class="p-datatable flex col-12">
+                <div class="p-datatable-tbody w-full flex col-12 flex-column">
+                <tr class="flex">
+                    <td class="flex col-6 td-header">Duration</td>
+                    <td class="flex col-6">{{currentProductDto.tag}}</td>
+                </tr>
+                <tr class="flex">
+                    <td class="flex col-6 td-header">Duration</td>
+                    <td class="flex col-6">{{currentProductDto.tag}}</td>
+                </tr>
+                <tr class="flex">
+                    <td class="flex col-6 td-header">Duration</td>
+                    <td class="flex col-6">{{currentProductDto.tag}}</td>
+                </tr>
+                </div>
+            </table>
+        </div>
+    </div>
+
+    <div class="flex justify-content-left border-1 surface-border border-round surface-0 p-2">
+        <label class="m-0 text-left">{{currentProductDto.description}}</label>
     </div>
 </div>

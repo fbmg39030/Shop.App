@@ -1,0 +1,26 @@
+.td-header{
+    text-align: left;
+    padding: 1rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-width: 0 0 1px 0;
+    font-weight: 700;
+    color: #374151;
+    background: #f9fafb;
+    transition: box-shadow 0.2s;
+}
+
+.product-tag{
+    display: flex;
+    position: relative; 
+    background-color: rgba(10, 32, 238, .6);
+    padding: 4px;
+    color: white;
+    font-size: .75rem;
+    border-radius: 6px;
+    padding: .25rem .4rem;
+    text-transform: uppercase;
+}
+
+.product-status{
+    position: relative;
+}

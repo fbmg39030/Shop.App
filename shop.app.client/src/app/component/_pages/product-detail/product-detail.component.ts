@@ -9,7 +9,7 @@ import { ProductService } from '../../../services/product/product.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.css'
+  styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent implements OnInit{
   currentProductDto!: ProductDto;
