@@ -1,0 +1,10 @@
+:host ::ng-deep{
+    .header .p-menubar {
+        position: fixed; 
+        width: 100%;
+        background-color: rgba(52, 73, 94, .9);
+        z-index: 1;
+        border: none;
+        border-radius:0;
+    }
+}
