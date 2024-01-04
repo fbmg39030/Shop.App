@@ -676,6 +676,7 @@ export class ProductAddOrUpdateRequest implements IProductAddOrUpdateRequest {
     price?: number;
     tag?: string | undefined;
     status?: ProductStatus;
+    techDetails?: { [key: string]: string; } | undefined;
 
     constructor(data?: IProductAddOrUpdateRequest) {
         if (data) {
@@ -694,6 +695,13 @@ export class ProductAddOrUpdateRequest implements IProductAddOrUpdateRequest {
             this.price = _data["price"];
             this.tag = _data["tag"];
             this.status = _data["status"];
+            if (_data["techDetails"]) {
+                this.techDetails = {} as any;
+                for (let key in _data["techDetails"]) {
+                    if (_data["techDetails"].hasOwnProperty(key))
+                        (<any>this.techDetails)![key] = _data["techDetails"][key];
+                }
+            }
         }
     }
 
@@ -712,6 +720,13 @@ export class ProductAddOrUpdateRequest implements IProductAddOrUpdateRequest {
         data["price"] = this.price;
         data["tag"] = this.tag;
         data["status"] = this.status;
+        if (this.techDetails) {
+            data["techDetails"] = {};
+            for (let key in this.techDetails) {
+                if (this.techDetails.hasOwnProperty(key))
+                    (<any>data["techDetails"])[key] = (<any>this.techDetails)[key];
+            }
+        }
         return data;
     }
 }
@@ -723,6 +738,7 @@ export interface IProductAddOrUpdateRequest {
     price?: number;
     tag?: string | undefined;
     status?: ProductStatus;
+    techDetails?: { [key: string]: string; } | undefined;
 }
 
 export class ProductDto implements IProductDto {
@@ -734,6 +750,7 @@ export class ProductDto implements IProductDto {
     price?: number;
     status?: ProductStatus;
     tag?: string | undefined;
+    techDetails?: { [key: string]: string; } | undefined;
 
     constructor(data?: IProductDto) {
         if (data) {
@@ -754,6 +771,13 @@ export class ProductDto implements IProductDto {
             this.price = _data["price"];
             this.status = _data["status"];
             this.tag = _data["tag"];
+            if (_data["techDetails"]) {
+                this.techDetails = {} as any;
+                for (let key in _data["techDetails"]) {
+                    if (_data["techDetails"].hasOwnProperty(key))
+                        (<any>this.techDetails)![key] = _data["techDetails"][key];
+                }
+            }
         }
     }
 
@@ -774,6 +798,13 @@ export class ProductDto implements IProductDto {
         data["price"] = this.price;
         data["status"] = this.status;
         data["tag"] = this.tag;
+        if (this.techDetails) {
+            data["techDetails"] = {};
+            for (let key in this.techDetails) {
+                if (this.techDetails.hasOwnProperty(key))
+                    (<any>data["techDetails"])[key] = (<any>this.techDetails)[key];
+            }
+        }
         return data;
     }
 }
@@ -787,6 +818,7 @@ export interface IProductDto {
     price?: number;
     status?: ProductStatus;
     tag?: string | undefined;
+    techDetails?: { [key: string]: string; } | undefined;
 }
 
 export class ProductQp implements IProductQp {
