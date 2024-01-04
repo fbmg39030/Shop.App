@@ -12,13 +12,12 @@ interface WeatherForecast {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-
   constructor(public sessionService: SessionService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   title = 'Shop';
 }

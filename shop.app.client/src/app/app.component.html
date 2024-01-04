@@ -1,12 +1,22 @@
 ﻿<app-header></app-header>
 <div class="flex">
-    <app-side-bar></app-side-bar>
-    <div class="md:ml-7 relative z-0 w-full" style="margin-top:61px; min-height: calc(100vh - 61px);">
-        <router-outlet></router-outlet>
-        <div *ngIf="this.sessionService.isSpinnerLoading"  class="absolute top-0 left-0 right-0 bottom-0 h-full" style="background: rgba(50, 50, 50, .5);">
-            <p-progressSpinner  styleClass="absolute" [style]="{'top':'calc(50vh - 50px)','left':'calc(50vw - 50px)'}"></p-progressSpinner>
-        </div>
+  <app-side-bar></app-side-bar>
+  <div
+    class="md:ml-7 relative z-0 w-full"
+    style="margin-top: 61px; min-height: calc(100vh - 61px)"
+  >
+    <router-outlet></router-outlet>
+    <div
+      *ngIf="this.sessionService.isSpinnerLoading"
+      class="absolute top-0 left-0 right-0 bottom-0 h-full"
+      style="background: rgba(50, 50, 50, 0.5)"
+    >
+      <p-progressSpinner
+        styleClass="absolute"
+        [style]="{ top: 'calc(50vh - 50px)', left: 'calc(50vw - 50px)' }"
+      ></p-progressSpinner>
     </div>
+  </div>
 </div>
 
 <p-toast [position]="'bottom-center'"></p-toast>
