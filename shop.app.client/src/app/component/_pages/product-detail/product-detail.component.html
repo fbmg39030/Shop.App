@@ -35,17 +35,9 @@
             <h3>Specifications</h3>
             <table class="p-datatable flex col-12">
                 <div class="p-datatable-tbody w-full flex col-12 flex-column">
-                <tr class="flex">
-                    <td class="flex col-6 td-header">Duration</td>
-                    <td class="flex col-6">{{currentProductDto?.tag}}</td>
-                </tr>
-                <tr class="flex">
-                    <td class="flex col-6 td-header">Duration</td>
-                    <td class="flex col-6">{{currentProductDto?.tag}}</td>
-                </tr>
-                <tr class="flex">
-                    <td class="flex col-6 td-header">Duration</td>
-                    <td class="flex col-6">{{currentProductDto?.tag}}</td>
+                <tr *ngFor="let item of currentProductDto?.techDetails | keyvalue" class="flex">
+                    <td class="flex col-6 td-header">{{item.key}}</td>
+                    <td class="flex col-6">{{item.value}}</td>
                 </tr>
                 </div>
             </table>
