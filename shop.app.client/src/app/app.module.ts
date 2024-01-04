@@ -13,6 +13,7 @@ import { DataManagementComponent } from './component/_pages/data-management/data
 import { ProductDetailComponent } from './component/_pages/product-detail/product-detail.component';
 import { ProductService } from './services/product/product.service';
 import { LocalstorageService } from './services/localstorage/localstorage.service';
+import { TechnicalDetailsTableComponent } from './component/technical-details-table/technical-details-table.component';
 
 //primeng imports
 import { ButtonModule } from 'primeng/button';
@@ -34,6 +35,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { GalleriaModule } from 'primeng/galleria';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { GalleriaModule } from 'primeng/galleria';
     DataManagementComponent,
     SideBarComponent,
     SidebarButtonComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    TechnicalDetailsTableComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -65,7 +68,8 @@ import { GalleriaModule } from 'primeng/galleria';
     ProgressSpinnerModule,
     DropdownModule,
     TooltipModule,
-    GalleriaModule 
+    GalleriaModule,
+    TableModule
   ],
   providers: [ 
     { provide: SHOP_API_BASE_URL, useValue: "https://localhost:8081" },
