@@ -1,50 +1,68 @@
-<div class="flex flex-column w-full h-full p-4" style="gap:.5rem">
-    <div class="flex justify-content-between border-round border-1 surface-border p-2" style="background-color: white;">
-        <h3 class="text-left m-1">{{currentProductDto?.name1}}</h3>
-        <div class="flex flex-column gap-1">
-            <span class="product-tag flex align-items-center gap-2" >
-                <i class="pi pi-tag"></i>
-                <span class="font-semibold">{{ currentProductDto?.tag}}</span>
-            </span>
-            <p-tag class="product-status flex justify-content-end" [value]="currentProductDto ? ''+this.sessionService.getStatusName(currentProductDto): ''" 
-            [severity]="''+this.sessionService.getSeverity(currentProductDto)"></p-tag>
-        </div>
-    </div>
-   
-    <div class="flex flex-row w-full h-full border-round border-1 surface-border" style="background-color: white;">
-        <div class="col-5 h-full"  >
-            <p-galleria
-                [value]="images" [responsiveOptions]="responsiveOptions"
-                [containerStyle]="{'max-width': '100%'}" [numVisible]="4" [circular]="true"
-                [showItemNavigators]="true" [showIndicators]="false" [showThumbnails]="false"
-                [showItemNavigatorsOnHover]="true">
-                <ng-template pTemplate="item" let-item>
-                    <div class="flex " style="max-height: 500px;">
-                        <img class="max-w-full h-auto flex" [src]="item.itemImageSrc"  />
-                    </div>
-                </ng-template>
-                <ng-template pTemplate="thumbnail" let-item>
-                    <div class="grid grid-nogutter justify-content-center">
-                        <img [src]="item.itemImageSrc" />
-                    </div>
-                </ng-template>
-            </p-galleria>
-        </div>
-        
-        <div class="col-6 ">
-            <h3>Specifications</h3>
-            <table class="p-datatable flex col-12">
-                <div class="p-datatable-tbody w-full flex col-12 flex-column">
-                <tr *ngFor="let item of currentProductDto?.techDetails | keyvalue" class="flex">
-                    <td class="flex col-6 td-header">{{item.key}}</td>
-                    <td class="flex col-6">{{item.value}}</td>
-                </tr>
-                </div>
-            </table>
-        </div>
+<div class="flex flex-row p-4">
+  <div class="flex flex-column col-9 h-full" style="gap: 1rem">
+    <div
+      class="flex justify-content-between p-4 surface-border border-1 border-round"
+      style="background-color: #f5faff">
+      <h2 class="text-left m-1">{{ currentProductDto?.name1 }}</h2>
+      <div class="flex flex-column gap-1">
+        <span class="product-tag flex align-items-center gap-2">
+          <i class="pi pi-tag"></i>
+          <span class="font-semibold">{{ currentProductDto?.tag }}</span>
+        </span>
+        <p-tag
+          class="product-status flex justify-content-end"
+          [value]="currentProductDto ? '' + this.sessionService.getStatusName(currentProductDto) : ''"
+          [severity]="'' + this.sessionService.getSeverity(currentProductDto)"></p-tag>
+      </div>
     </div>
 
-    <div class="flex justify-content-left border-1 surface-border border-round surface-0 p-2">
-        <label class="m-0 text-left">{{currentProductDto?.description}}</label>
+    <div class="flex flex-row w-full h-full border-1 surface-border border-round" style="background-color: #f5faff">
+      <div class="col-5 p-0 h-full">
+        <p-galleria
+          [value]="images"
+          [responsiveOptions]="responsiveOptions"
+          [containerStyle]="{ 'max-width': '100%' }"
+          [numVisible]="4"
+          [circular]="true"
+          [showItemNavigators]="true"
+          [showIndicators]="false"
+          [showThumbnails]="false"
+          [showItemNavigatorsOnHover]="true">
+          <ng-template pTemplate="item" let-item>
+            <div class="flex" style="max-height: 400px">
+              <img class="max-w-full h-auto flex" [src]="item.itemImageSrc" />
+            </div>
+          </ng-template>
+          <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+              <img [src]="item.itemImageSrc" />
+            </div>
+          </ng-template>
+        </p-galleria>
+      </div>
+
+      <div class="col-7 flex p-3">
+        <label class="m-0 text-left">{{ currentProductDto?.description }}</label>
+      </div>
     </div>
+
+    <div
+      style="background-color: #f5faff"
+      class="flex flex-column justify-content-left border-1 surface-border border-round p-2">
+      <h3>Specifications</h3>
+      <table class="p-datatable flex col-12">
+        <div class="p-datatable-tbody w-full flex col-12 flex-column">
+          <tr *ngFor="let item of currentProductDto?.techDetails | keyvalue" class="flex">
+            <td class="flex col-6 td-header">{{ item.key }}</td>
+            <td class="flex col-6">{{ item.value }}</td>
+          </tr>
+        </div>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2 H div -->
+  <div class="flex flex-column col-3">
+    <div class="border-solid h-full">fdsafdsa</div>
+  </div>
 </div>
