@@ -63,6 +63,41 @@
 
   <!-- 2 H div -->
   <div class="flex flex-column col-3">
-    <div class="border-solid h-full">fdsafdsa</div>
+    <div class="flex h-full border-round flex-column gap-3 p-3 pt-5" style="background-color: #f5faff">
+      <div class="flex flex-column text-left" style="color: #0f1111; font-weight: 600">
+        <p>FREE delivery Tuesday, 9 January</p>
+        <p>Or fastest delivery Tomorrow, 5 January. Order within 23 hrs 36 mins</p>
+      </div>
+      <div class="flex text-left" style="color: #b94848; font-weight: 600">Only 3 left in stock (more on the way).</div>
+      <div class="flex flex-row" style="gap: 0.5rem">
+        <div class="p-4 flex-grow-1 surface-0 border-1 surface-border border-round">{{ currentProductDto.tag }}</div>
+        <div class="p-4 flex-grow-1 surface-0 border-1 surface-border border-round" style="color: #b12704">
+          ${{ currentProductDto.price }}
+        </div>
+      </div>
+      <div class="flex flex-row w-full">
+        <p-dropdown class="w-full flex w-full quantity-dropdown" [options]="quantityItems" placeholder="Quantity: 1">
+          <ng-template pTemplate="selectedItem" let-item>
+            {{ "Quantity: " + item }}
+          </ng-template>
+        </p-dropdown>
+        <!-- [(ngModel)]="selectedStatus" -->
+      </div>
+      <div class="flex flex-column w-full gap-1">
+        <button
+          pButton
+          pRipple
+          label="Add to basket"
+          class="p-button-success m-auto add-to-basket-button"
+          (click)="(null)"></button>
+        <button
+          pButton
+          pRipple
+          label="Save for later"
+          class="m-auto add-to-basket-button"
+          style="background-color: #e6a905; color: white; font-weight: 500"
+          (click)="(null)"></button>
+      </div>
+    </div>
   </div>
 </div>
