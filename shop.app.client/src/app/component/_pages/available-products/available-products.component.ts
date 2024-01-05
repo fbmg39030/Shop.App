@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductClient, ProductDto, ProductQp, ProductStatus } from '../../../clients/shop-client'
+import { ProductClient, ProductDto, ProductQp, ProductStatus } from '../../../clients/shop-client';
 import { Observable, catchError, lastValueFrom, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
@@ -12,31 +12,35 @@ import { SessionService } from '../../../services/session/session.service';
 @Component({
   selector: 'app-available-products',
   templateUrl: './available-products.component.html',
-  styleUrl: './available-products.component.scss'
+  styleUrl: './available-products.component.scss',
 })
-export class AvailableProductsComponent implements OnInit{
-  layout:string = ''
+export class AvailableProductsComponent implements OnInit {
+  layout: string = '';
   products: ProductDto[] = [];
 
-  constructor(private messageService: MessageService, private productService: ProductService, 
-              private localstorageService: LocalstorageService, private router: Router,
-              public sessionService: SessionService) { }
+  constructor(
+    private messageService: MessageService,
+    private productService: ProductService,
+    private localstorageService: LocalstorageService,
+    private router: Router,
+    public sessionService: SessionService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.sessionService.isSpinnerLoading = true;
-    
-    const qp :ProductQp=new ProductQp();    
-    this.products = await this.productService.queryProducts(qp) ?? [];
+
+    const qp: ProductQp = new ProductQp();
+    qp.status = [ProductStatus._0, ProductStatus._1, ProductStatus._2, ProductStatus._3];
+    this.products = (await this.productService.queryProducts(qp)) ?? [];
 
     this.sessionService.isSpinnerLoading = false;
   }
 
-  addToCard(product: ProductDto){
-    this.localstorageService.addToCart(product)
+  addToCard(product: ProductDto) {
+    this.localstorageService.addToCart(product);
   }
 
   navigateToDetail(product: ProductDto) {
-    this.router.navigate(["product-detail", { loid: product.logicalObjectId }]);
+    this.router.navigate(['product-detail', { loid: product.logicalObjectId }]);
   }
-
 }
