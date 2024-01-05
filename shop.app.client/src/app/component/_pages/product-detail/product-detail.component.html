@@ -1,4 +1,4 @@
-<div class="flex flex-column md:flex-row p-1 lg:p-3 relative">
+<div class="flex flex-column md:flex-row p-1 lg:p-3 relative" *ngIf="currentProductDto">
   <div class="flex flex-column col-12 md:col-9 lg:col-9 h-full p-2 sm:p-4 md:p-0 md:pr-4" style="gap: 1rem">
     <div
       class="flex justify-content-between p-3 pl-2 pr-2 surface-border border-1 border-round"
@@ -22,7 +22,7 @@
         style="background-color: #f5faff">
         <div class="flex-1 flex flex-column justify-content-center">
           <p-galleria
-            [value]="images"
+            [value]="currentProductDto.images"
             [responsiveOptions]="responsiveOptions"
             [containerStyle]="{ 'max-width': '100%' }"
             [numVisible]="4"
@@ -33,13 +33,11 @@
             [showItemNavigatorsOnHover]="true"
             class="flex justify-content-center">
             <ng-template pTemplate="item" let-item>
-              <div class="flex" style="max-height: 400px">
-                <img class="max-w-full h-auto flex" style="aspect-ratio: 200/243" [src]="item.itemImageSrc" />
-              </div>
-            </ng-template>
-            <ng-template pTemplate="thumbnail" let-item>
-              <div class="grid grid-nogutter justify-content-center">
-                <img class="border-1 border-round surface-border" [src]="item.itemImageSrc" />
+              <div class="flex" style="max-height: 400px; padding: 10px">
+                <img
+                  class="max-w-full h-auto flex"
+                  style="aspect-ratio: 200/243"
+                  src="data:image/{{ item.mimeType }};base64, {{ item.bytes }}" />
               </div>
             </ng-template>
           </p-galleria>

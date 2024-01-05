@@ -18,9 +18,9 @@
             <img
               (click)="navigateToDetail(product)"
               class="w-full shadow-2 border-round cursor-pointer"
-              [src]="'assets/galeria-4.jpg'"
+              src="data:image/{{ product.images[0].mimeType }}; base64, {{ product.images[0].bytes }}"
               [alt]="product.name"
-              style="max-height: 225px" />
+              style="max-height: 225px; min-height: 225px" />
             <div class="flex flex-column align-items-center gap-2" style="padding: 10px">
               <div class="text-1xl font-bold cursor-pointer product-name text-left" (click)="navigateToDetail(product)">
                 {{ product.name1 }}

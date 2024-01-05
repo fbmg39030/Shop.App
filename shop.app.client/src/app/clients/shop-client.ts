@@ -1020,6 +1020,7 @@ export class ProductQp implements IProductQp {
   name1?: string | undefined;
   description?: string | undefined;
   price?: number;
+  status?: ProductStatus[] | undefined;
 
   constructor(data?: IProductQp) {
     if (data) {
@@ -1039,6 +1040,10 @@ export class ProductQp implements IProductQp {
       this.name1 = _data['name1'];
       this.description = _data['description'];
       this.price = _data['price'];
+      if (Array.isArray(_data['status'])) {
+        this.status = [] as any;
+        for (let item of _data['status']) this.status!.push(item);
+      }
     }
   }
 
@@ -1059,6 +1064,10 @@ export class ProductQp implements IProductQp {
     data['name1'] = this.name1;
     data['description'] = this.description;
     data['price'] = this.price;
+    if (Array.isArray(this.status)) {
+      data['status'] = [];
+      for (let item of this.status) data['status'].push(item);
+    }
     return data;
   }
 }
@@ -1069,6 +1078,7 @@ export interface IProductQp {
   name1?: string | undefined;
   description?: string | undefined;
   price?: number;
+  status?: ProductStatus[] | undefined;
 }
 
 export enum ProductStatus {
