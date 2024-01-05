@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductDto, ProductQp } from '../../../clients/shop-client';
+import { ProductDto, ProductImageDto, ProductQp } from '../../../clients/shop-client';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom, lastValueFrom, switchMap } from 'rxjs';
 import { MessageService } from 'primeng/api';
@@ -64,27 +64,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   setupGaleria() {
-    this.images = [
-      {
-        itemImageSrc: 'assets/galeria-1.jpg',
-        thumbnailImageSrc: 'assets/galeria-1.jpg',
-        alt: 'Description for Image 1',
-        title: 'Title 1',
-      },
-      {
-        itemImageSrc: 'assets/galeria-3.jpg',
-        thumbnailImageSrc: 'assets/galeria-1.jpg',
-        alt: 'Description for Image 1',
-        title: 'Title 1',
-      },
-      {
-        itemImageSrc: 'assets/galeria-4.jpg',
-        thumbnailImageSrc: 'assets/galeria-1.jpg',
-        alt: 'Description for Image 1',
-        title: 'Title 1',
-      },
-    ];
-
     this.responsiveOptions = [
       {
         breakpoint: '1024px',

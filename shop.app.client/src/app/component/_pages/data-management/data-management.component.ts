@@ -116,7 +116,7 @@ export class DataManagementComponent implements OnInit {
   onUpload(event: FileUploadEvent) {
     console.log(event);
     this.fileList = event.files;
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'File Uploaded, proceed with request' });
   }
 }
 
