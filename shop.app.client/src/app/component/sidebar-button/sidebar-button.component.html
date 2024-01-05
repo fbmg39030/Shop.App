@@ -1,0 +1,21 @@
+<button
+  pButton
+  type="button"
+  class="p-button-sm p-button-text pl-0 pr-0 w-full"
+  id="parent-hover"
+  [ngStyle]="{'color': buttonColor}"
+>
+  <div class="flex button-div">
+    <i
+      style="align-self: center; min-width: 64px"
+      class="{{ buttonIcon }} "
+      id="button-hover-icon"
+    ></i>
+    <div
+      class="textLenghtLimit buttonWithLabel"
+      style="text-align: start; margin-right: 4px"
+    >
+      {{ buttonText }}
+    </div>
+  </div>
+</button>

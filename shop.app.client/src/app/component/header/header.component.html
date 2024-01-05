@@ -1,1 +1,17 @@
-<p-menubar [model]="items"></p-menubar>
+<p-menubar [model]="items" class="header" >
+    <ng-template pTemplate="start">
+    </ng-template>
+        
+    <ng-template pTemplate="end">
+        <div class="flex" style="gap:.5rem">
+            <p-button icon="pi pi-user" [rounded]="false" [outlined]="true" [style]="{'color':'white'}" 
+            (onClick)="navigate('user')" [pTooltip]="'User'" tooltipPosition="bottom" [showDelay]="1000"></p-button>
+
+            <p-button icon="pi pi-list" [rounded]="false" [outlined]="true" [style]="{'color':'white'}" 
+            (onClick)="navigate('orders')" [pTooltip]="'Orders'" tooltipPosition="bottom" [showDelay]="1000"></p-button>
+
+            <p-button icon="pi pi-shopping-cart" [rounded]="false" [outlined]="true" [style]="{'color':'white'}" 
+            (onClick)="navigate('cart')" [pTooltip]="'Cart'" tooltipPosition="bottom" [showDelay]="1000"></p-button>
+        </div>
+    </ng-template>
+</p-menubar>

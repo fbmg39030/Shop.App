@@ -1,0 +1,35 @@
+.td-header {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-width: 0 0 1px 0;
+  font-weight: 700;
+  color: #374151;
+  background: #f9fafb;
+  transition: box-shadow 0.2s;
+}
+
+.product-tag {
+  display: flex;
+  position: relative;
+  background-color: rgba(10, 32, 238, 0.6);
+  padding: 4px;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  padding: 0.25rem 0.4rem;
+  text-transform: uppercase;
+}
+
+.product-status {
+  position: relative;
+}
+:host ::ng-deep {
+  .quantity-dropdown .p-dropdown {
+    width: 100%;
+  }
+  .add-to-basket-button,
+  .p-button {
+    width: 100%;
+  }
+}

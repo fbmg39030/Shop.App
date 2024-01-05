@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 export class SideBarComponent {
   helpSwitch: boolean = false;
   clickMenuEventKey: string = 'sideMenuClick';
+
+  constructor(private router: Router) {}
 
   ngAfterViewInit() {
     window.addEventListener('sideBarMenuOpen', () => {
@@ -36,5 +39,9 @@ export class SideBarComponent {
         .getElementById('side-bar-hover-menu')!
         .classList.remove('sideBarMenu-opened');
     }
+  }
+
+  public navigate(path: string){
+    this.router.navigate([path])
   }
 }

@@ -1,0 +1,109 @@
+<div class="flex flex-column md:flex-row p-1 lg:p-3 relative">
+  <div class="flex flex-column col-12 md:col-9 lg:col-9 h-full p-2 sm:p-4 md:p-0 md:pr-4" style="gap: 1rem">
+    <div
+      class="flex justify-content-between p-3 pl-2 pr-2 surface-border border-1 border-round"
+      style="background-color: #f5faff">
+      <h2 class="text-left m-1">{{ currentProductDto?.name1 }}</h2>
+      <div class="flex flex-column gap-1">
+        <span class="product-tag flex align-items-center gap-2">
+          <i class="pi pi-tag"></i>
+          <span class="font-semibold">{{ currentProductDto?.tag }}</span>
+        </span>
+        <p-tag
+          class="product-status flex justify-content-end"
+          [value]="currentProductDto ? '' + this.sessionService.getStatusName(currentProductDto) : ''"
+          [severity]="'' + this.sessionService.getSeverity(currentProductDto)"></p-tag>
+      </div>
+    </div>
+
+    <div class="flex-column flex">
+      <div
+        class="flex flex-column lg:flex-row w-full h-full border-1 surface-border border-round"
+        style="background-color: #f5faff">
+        <div class="flex-1 flex flex-column justify-content-center">
+          <p-galleria
+            [value]="images"
+            [responsiveOptions]="responsiveOptions"
+            [containerStyle]="{ 'max-width': '100%' }"
+            [numVisible]="4"
+            [circular]="true"
+            [showItemNavigators]="true"
+            [showIndicators]="false"
+            [showThumbnails]="false"
+            [showItemNavigatorsOnHover]="true"
+            class="flex justify-content-center">
+            <ng-template pTemplate="item" let-item>
+              <div class="flex" style="max-height: 400px">
+                <img class="max-w-full h-auto flex" style="aspect-ratio: 200/243" [src]="item.itemImageSrc" />
+              </div>
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+              <div class="grid grid-nogutter justify-content-center">
+                <img class="border-1 border-round surface-border" [src]="item.itemImageSrc" />
+              </div>
+            </ng-template>
+          </p-galleria>
+        </div>
+
+        <div class="flex-1 p-3">
+          <label class="m-0 flex text-left" style="font-size: small">{{ currentProductDto?.description }}</label>
+        </div>
+      </div>
+    </div>
+
+    <div
+      style="background-color: #f5faff"
+      class="flex flex-column justify-content-left border-1 surface-border border-round p-2">
+      <h3>Specifications</h3>
+      <table class="p-datatable flex col-12">
+        <div class="p-datatable-tbody w-full flex col-12 flex-column">
+          <tr *ngFor="let item of currentProductDto?.techDetails | keyvalue" class="flex">
+            <td class="flex col-6 td-header">{{ item.key }}</td>
+            <td class="flex col-6">{{ item.value }}</td>
+          </tr>
+        </div>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2 H div -->
+  <div class="flex flex-column col-12 md:col-3 lg:col-3 p-2 sm:p-4 md:p-0 pt-0 relative md:right-0 md:fixed md:top-10">
+    <div class="top-20 left-0 flex h-auto border-round flex-column gap-3 p-2" style="background-color: #f5faff">
+      <div class="flex flex-column text-left" style="color: #0f1111; font-weight: 600">
+        <p class="mb-0">FREE delivery Tuesday, 9 January</p>
+        <p class="mt-0">Or fastest delivery Tomorrow, 5 January.</p>
+        <p class="mt-0">Order within 23 hrs 36 mins</p>
+      </div>
+      <div class="flex text-left" style="color: #b94848; font-weight: 600">Only 3 left in stock (more on the way).</div>
+      <div class="flex flex-row" style="gap: 0.5rem">
+        <!-- <div class="p-4 flex-grow-1 surface-0 border-1 surface-border border-round">{{ currentProductDto.tag }}</div> -->
+        <div class="p-4 flex-grow-1 surface-0 border-1 surface-border border-round" style="color: #b12704">
+          ${{ currentProductDto.price }}
+        </div>
+      </div>
+      <div class="flex flex-row w-full">
+        <p-dropdown class="w-full flex w-full quantity-dropdown" [options]="quantityItems" placeholder="Quantity: 1">
+          <ng-template pTemplate="selectedItem" let-item>
+            {{ "Quantity: " + item }}
+          </ng-template>
+        </p-dropdown>
+        <!-- [(ngModel)]="selectedStatus" -->
+      </div>
+      <div class="flex flex-column w-full gap-1">
+        <button
+          pButton
+          pRipple
+          label="Add to basket"
+          class="p-button-success m-auto add-to-basket-button"
+          (click)="this.localstorageService.addToCart(currentProductDto)"></button>
+        <button
+          pButton
+          pRipple
+          label="Save for later"
+          class="m-auto add-to-basket-button"
+          style="background-color: #e6a905; color: white; font-weight: 500"
+          (click)="(null)"></button>
+      </div>
+    </div>
+  </div>
+</div>
