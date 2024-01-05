@@ -5,6 +5,7 @@ import { firstValueFrom, lastValueFrom, switchMap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { SessionService } from '../../../services/session/session.service';
 import { ProductService } from '../../../services/product/product.service';
+import { LocalstorageService } from '../../../services/localstorage/localstorage.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -24,7 +25,8 @@ export class ProductDetailComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private productService: ProductService,
-    public sessionService: SessionService
+    public sessionService: SessionService,
+    public localstorageService: LocalstorageService
   ) {}
 
   async ngOnInit(): Promise<void> {

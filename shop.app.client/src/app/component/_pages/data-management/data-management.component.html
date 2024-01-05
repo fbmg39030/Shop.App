@@ -56,15 +56,10 @@
       url="https://www.primefaces.org/cdn/api/upload.php"
       [multiple]="true"
       accept="image/*"
-      [maxFileSize]="1000000">
+      [maxFileSize]="1000000"
+      (onUpload)="onUpload($event)">
       <ng-template pTemplate="toolbar">
         <div class="py-3">Upload 3 Files</div>
-      </ng-template>
-      <ng-template let-file pTemplate="file">
-        <div>Custom UI to display a file</div>
-      </ng-template>
-      <ng-template pTemplate="content" let-files>
-        <div>The selected files will be shown here.</div>
       </ng-template>
     </p-fileUpload>
   </div>

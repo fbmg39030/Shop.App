@@ -46,7 +46,7 @@
         </div>
 
         <div class="flex-1 p-3">
-          <label class="m-0 flex text-left">{{ currentProductDto?.description }}</label>
+          <label class="m-0 flex text-left" style="font-size: small">{{ currentProductDto?.description }}</label>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@
           pRipple
           label="Add to basket"
           class="p-button-success m-auto add-to-basket-button"
-          (click)="(null)"></button>
+          (click)="this.localstorageService.addToCart(currentProductDto)"></button>
         <button
           pButton
           pRipple
