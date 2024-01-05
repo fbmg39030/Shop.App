@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductAddOrUpdateRequest, ProductClient, ProductStatus } from '../../../clients/shop-client';
+import {
+  AddProductImageRequest,
+  ProductAddOrUpdateRequest,
+  ProductClient,
+  ProductStatus,
+} from '../../../clients/shop-client';
 import { lastValueFrom } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { SessionService } from '../../../services/session/session.service';
 import { STATUS_INACTIVE, STATUS_INSTOCK, STATUS_LOWSTOCK, STATUS_OUTOFSTOCK } from '../../../app-constants';
+import { FileUploadEvent } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-data-management',
@@ -17,6 +23,7 @@ export class DataManagementComponent implements OnInit {
   productTag: string = '';
   selectedStatus: ProductStatusDisplay | undefined;
   techDetails: { [key: string]: string } | undefined = {};
+  fileList: File[] = [];
 
   statusOptions: ProductStatusDisplay[] = [];
 
@@ -37,6 +44,7 @@ export class DataManagementComponent implements OnInit {
 
   public async submit() {
     this.sessionService.isSpinnerLoading = true;
+
     let request = new ProductAddOrUpdateRequest();
     request.name1 = this.productName;
     request.description = this.productDescription;
@@ -44,6 +52,7 @@ export class DataManagementComponent implements OnInit {
     request.tag = this.productTag;
     request.status = this.selectedStatus ? this.selectedStatus.code : ProductStatus._0;
     request.techDetails = this.techDetails;
+    request.imageRequests = await this.createImageRequestList();
 
     try {
       const result = await lastValueFrom(this.productClient.addOrUpdate(request));
@@ -62,15 +71,37 @@ export class DataManagementComponent implements OnInit {
       });
     } finally {
       this.sessionService.isSpinnerLoading = false;
-      this.clearFields();
+      // this.clearFields();
     }
   }
+
+  async createImageRequestList() {
+    return await Promise.all(
+      this.fileList.map(async (file) => {
+        const request = new AddProductImageRequest();
+        request.name = file.name;
+        request.version = 1;
+        request.mimeType = file.type;
+
+        const base64String = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result?.toString().split(',')[1] ?? '');
+          reader.readAsDataURL(file);
+        });
+
+        request.bytes = base64String;
+        return request;
+      })
+    );
+  }
+
   clearFields() {
     this.productName = '';
     this.productDescription = '';
     this.productPrice = '';
     this.productTag = '';
     this.selectedStatus = undefined;
+    this.fileList = [];
   }
 
   //converts map entries from table to request excepted params
@@ -80,6 +111,12 @@ export class DataManagementComponent implements OnInit {
       acc[obj['key']] = obj['value'];
       return acc;
     }, {} as { [key: string]: string });
+  }
+
+  onUpload(event: FileUploadEvent) {
+    console.log(event);
+    this.fileList = event.files;
+    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
   }
 }
 
